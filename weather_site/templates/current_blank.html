@@ -18,8 +18,8 @@ div.tooltip {
 // display state map with weather station locations
 function drawState(userState) {
   //Width and height
-  var w = 960,
-      h = 500,
+  var w = 1024,
+      h = 768,
       chartDiv = document.getElementById("chart");
 
   function redraw() {
@@ -44,10 +44,10 @@ function drawState(userState) {
   //Create SVG element
   var svg = d3.select("#chart")
         .append("svg")
-        .attr("viewBox", "0 0 960 500")
+        .attr("viewBox", "0 0 1024 768")
         .attr("preserveAspectRatio", "xMidYMid")
-        .attr("height", "500px")
-        .attr("width", "960px");
+        .attr("height", "768px")
+        .attr("width", "1024px");
 
   // Append Div for tooltip to SVG
   var div = d3.select("#state_image")
@@ -64,7 +64,7 @@ function drawState(userState) {
         .translate([0, 0]);
 
       var b = path.bounds(state[0]),
-          s = 0.95 / Math.max((b[1][0] - b[0][0]) / w, (b[1][1] - b[0][1]) / h),
+          s = 1.15 / Math.max((b[1][0] - b[0][0]) / w, (b[1][1] - b[0][1]) / h),
           t = [(w - s * (b[1][0] + b[0][0])) / 2, (h - s * (b[1][1] + b[0][1])) / 2];
 
       //Update projection with new offset
