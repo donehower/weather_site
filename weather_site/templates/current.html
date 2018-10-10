@@ -64,7 +64,7 @@ function drawState(userState) {
         .translate([0, 0]);
 
       var b = path.bounds(state[0]),
-          s = 1.15 / Math.max((b[1][0] - b[0][0]) / w, (b[1][1] - b[0][1]) / h),
+          s = 0.9 / Math.max((b[1][0] - b[0][0]) / w, (b[1][1] - b[0][1]) / h),
           t = [(w - s * (b[1][0] + b[0][0])) / 2, (h - s * (b[1][1] + b[0][1])) / 2];
 
       //Update projection with new offset
