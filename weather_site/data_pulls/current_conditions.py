@@ -52,29 +52,45 @@ def get_current_conditions(station_id):
         text_conditions = res['properties']['textDescription']
         # Temperature (reported as celsius and converted to fahrenheit)
         tc = res['properties']['temperature']['value']
-        tf = c_to_f(tc)
+        if isinstance(tc, float) or isinstance(tc, int):
+            tf = c_to_f(tc)
+        else:
+            tf = "Unavailable"
         # Wind direction and speed (converted from m/s to mph)
         windD_deg = res['properties']['windDirection']['value']
-        if windD_deg is type(None):
-            windD_deg = ' '
-        if windD_deg is not type(None):
+        if isinstance(windD_deg, float) or isinstance(windD_deg, int):
             windD_deg = round(windD_deg)
+            windD_card = degree_to_cardinal(windD_deg)
+        else:
+            windD_deg = "Unavailable"
+            windD_card = "Unavailable"
 
-        windD_card = degree_to_cardinal(windD_deg)
         windS = res['properties']['windSpeed']['value']
-        if windS is type(None):
-            windS = ' '
-        if windS is not type(None):
+        if isinstance(windS, float) or isinstance(windS, int):
             windS = windS * 2.236936
+        else:
+            windS = "Unavailable"
+
         #Relative Humidity
-        relH = round(res['properties']['relativeHumidity']['value'])
+        relH = res['properties']['relativeHumidity']['value']
+        if isinstance(relH, float) or isinstance(relH, int):
+            relH = round(relH)
+        else:
+            relH = "Unavailable"
         # Wind chill and heat index
         windChill = res['properties']['windChill']['value']
         heatIndex = res['properties']['heatIndex']['value']
-        feels_like = feels_like(windChill, heatIndex)
+        if (isinstance(windChill, float) or isinstance(windChill, int)) and (isinstance(heatIndex, float) or isinstance(heatIndex, int)):
+             feels_like = feels_like(windChill, heatIndex)
+        else:
+            feels_like = tf
 
         conditions = {'descrip': text_conditions, 'temp': tf,
                       'windD_deg': windD_deg, 'windD_card': windD_card,
                       'windS': windS, 'relH': relH, 'feels_like': feels_like}
 
-        return conditions
+        conditions_vals = list(conditions.values())
+        if conditions_vals.count("Unavailable") > 2:
+            return 0
+        else:
+            return conditions
