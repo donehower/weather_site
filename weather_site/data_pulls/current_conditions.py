@@ -54,6 +54,10 @@ def get_current_conditions(station_id):
     else:
         # Descriptive Conditions
         text_conditions = res['properties']['textDescription']
+        if isinstance(text_conditions, str):
+            text_conditions = text_conditions
+        else:
+            text_conditions = " "
 
         # Temperature (reported as celsius and converted to fahrenheit)
         tc = res['properties']['temperature']['value']
