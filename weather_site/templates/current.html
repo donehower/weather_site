@@ -216,7 +216,7 @@ $( document ).ready(function() {
               <br>Please choose another station.\
               ");
             $('#conditions_report').css('display', 'none');
-          }
+          } else {
           $('#descrip').text(data.descrip)
           $('#station').text("Station:  " + send.station)
           $('#temp').text("Temperature:  " + data.temp + '\u2109')
@@ -238,12 +238,20 @@ $( document ).ready(function() {
             $('#compass').css('display', 'none')
           }
 
-          if (data.descrip.includes("Cloudy")) {
-            $('body').css( {'background-image':'url(../static/images/cloudy.jpg/)', 'background-size':'cover'} );
+          if (data.descrip != " ") {
+            if (data.descrip.includes("Cloudy")) {
+              $('body').css( {'background-image':'url(../static/images/cloudy.jpg/)', 'background-size':'cover'} );
+            }
+            if (data.descrip.includes("Clear")) {
+              $('body').css( {'background-image':'url(../static/images/clear.jpg/)', 'background-size':'cover'} );
+            }
           }
-          if (data.descrip.includes("Clear")) {
-            $('body').css( {'background-image':'url(../static/images/clear.jpg/)', 'background-size':'cover'} );
+
+          if (data.script == " ") {
+              $('body').css( {'background-image':'url(../static/images/wood.jpg/)', 'background-size':'cover'});
           }
+        }
+
 
         }); // end of function to display api response data
 
@@ -265,7 +273,7 @@ $( document ).ready(function() {
           {{ form.station(id='select_station', class="form-control") }}
         </div>
         <br>
-        <button type="button" class="btn text-white bg-transparent border-white" onClick="window.location.reload()">New State</button>
+        <button type="button" class="btn text-white bg-transparent border-white" onClick="window.location.reload()">New Location</button>
         <br>
     </form>
   </div>
