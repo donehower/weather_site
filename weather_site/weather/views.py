@@ -20,7 +20,7 @@ def current():
     form.city.choices = [(row.city, row.city) for row in Locations.query.distinct(Locations.city).all()]
     form.station.choices = [(row.name, row.name) for row in Locations.query.distinct(Locations.name).all()]
 
-    return render_template('current_blank.html', form=form)
+    return render_template('current.html', form=form)
 
 
 @weather.route('/_get_cities')
