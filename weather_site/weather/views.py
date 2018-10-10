@@ -12,8 +12,8 @@ weather = Blueprint('weather', __name__)
 # ----------------------- CURRENT CONDITIONS -------------------------------- #
 
 
-@weather.route('/current_blank', methods=['GET', 'POST'])
-def current_blank():
+@weather.route('/', methods=['GET', 'POST'])
+def current():
 
     form = FindLocation(form_name='PickCity')
     form.state_full.choices = [(row.state_full, row.state_full) for row in Locations.query.distinct(Locations.state_full).all()]
