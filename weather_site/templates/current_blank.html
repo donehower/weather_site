@@ -171,26 +171,6 @@ $( document ).ready(function() {
       return send.state
     }
 
-    // function to call XHR and update station dropdown
-    // function updateStations() {
-    //   var send = {
-    //     city: dropdown.city.val()
-    //   };
-    //   dropdown.station.attr('disabled', 'disabled');
-    //   dropdown.station.empty();
-    //   $.getJSON("{{ url_for('weather._get_stations') }}", send, function(data) {
-    //     dropdown.station.prepend("<option value='' selected='selected'></option>");
-    //     data.forEach(function(item) {
-    //       dropdown.station.append(
-    //         $('<option>', {
-    //           value: item[0],
-    //           text: item[1]
-    //         })
-    //       );
-    //     });
-    //     dropdown.station.removeAttr('disabled');
-    //   });
-    // }
     function updateStations() {
       var send = {
         state: dropdown.state.val()
