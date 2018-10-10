@@ -23,17 +23,6 @@ def current_blank():
     return render_template('current_blank.html', form=form)
 
 
-@weather.route('/current', methods=['GET', 'POST'])
-def current():
-
-    form = FindLocation(form_name='PickCity')
-    form.state_full.choices = [(row.state_full, row.state_full) for row in Locations.query.distinct(Locations.state_full).all()]
-    form.city.choices = [(row.city, row.city) for row in Locations.query.distinct(Locations.city).all()]
-    form.station.choices = [(row.name, row.name) for row in Locations.query.distinct(Locations.name).all()]
-
-    return render_template('current.html', form=form)
-
-
 @weather.route('/_get_cities')
 def _get_cities():
     new_state = request.args.get('state', '01', type=str)
