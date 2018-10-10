@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<script charset="utf-8" type="text/javascript">
+
+  $(function() {
+    $('#compass').css('display', 'none')
+    // jQuery selection for the 2 select boxes
+    var dropdown = {
+      state: $('#select_state'),
+      city: $('#select_city'),
+      station: $('#select_station')
+    };
+
+    // call to update on load
+    updateStations();
+    updateCities();
+
+    // function to call XHR and update city dropdown
+    function updateCities() {
+      var send = {
+        state: dropdown.state.val()
+      };
+      dropdown.city.attr('disabled', 'disabled');
+      dropdown.city.empty();
+      $.getJSON("{{ url_for('weather._get_cities') }}", send, function(data) {
+        dropdown.city.prepend("<option value='' selected='selected'></option>");
+        data.forEach(function(item) {
+          dropdown.city.append(
+            $('<option>', {
+              value: item[0],
+              text: item[1]
+            })
+          );
+        });
+        dropdown.city.removeAttr('disabled');
+      });
+    }
+
+    // function to call XHR and update station dropdown
+    function updateStations() {
+      var send = {
+        city: dropdown.city.val()
+      };
+      dropdown.station.attr('disabled', 'disabled');
+      dropdown.station.empty();
+      $.getJSON("{{ url_for('weather._get_stations') }}", send, function(data) {
+        dropdown.station.prepend("<option value='' selected='selected'></option>");
+        data.forEach(function(item) {
+          dropdown.station.append(
+            $('<option>', {
+              value: item[0],
+              text: item[1]
+            })
+          );
+        });
+        dropdown.station.removeAttr('disabled');
+      });
+    }
+
+    // event listener to state dropdown change
+    dropdown.state.on('change', function() {
+      updateCities();
+    });
+    // event listener to city dropdown change
+    dropdown.city.on('change', function() {
+      updateStations();
+    });
+
+    // event listener for station to retrieve conditions
+    dropdown.station.on('change', function() {
+      var send = {
+        station: dropdown.station.val()
+      };
+
+        $.get("{{ url_for('weather._get_conditions') }}", send, function(data) {
+          $('#descrip').text(data.descrip)
+          $('#station').text("Station:  " + send.station)
+          $('#temp').text("Temperature:  " + data.temp + '\u2109')
+          $('#relH').text("Relative Humidity:  " + data.relH + '\u0025')
+          if (data.feels_like == null) {
+            $('#feels_like').text("Feels Like:  " + data.temp + '\u2109')
+          }
+          if (data.feels_like != null) {
+            $('#feels_like').text("Feels Like:  " + data.feels_like + '\u2109')
+          }
+
+          if (data.windD_deg != ' ') {
+            $('#windD_deg').text(data.windD_deg + '\u00B0' + " " + data.windD_card)
+            var rot = data.windD_deg - 45
+            rot = 'rotate('+rot+'deg)'
+            $('#compass').css( {'transform': rot, 'display':'inline'} )
+          }
+          if (data.windD_deg == ' ') {
+            $('#compass').css('display', 'none')
+          }
+
+          if (data.descrip.includes("Cloudy")) {
+            $('body').css( {'background-image':'url(../static/images/cloudy.jpg/)', 'background-size':'cover'} );
+          }
+          if (data.descrip.includes("Clear")) {
+            $('body').css( {'background-image':'url(../static/images/clear.jpg/)', 'background-size':'cover'} );
+          }
+
+        });
+    });
+  });
+
+  </script>
+
+  <div class="row no-gutters">
+    <div class="col-sm-2 text-white px-3 form-group">
+      <br>
+      <form method="POST" enctype="multipart/form-data" >
+        {{form.hidden_tag() }}
+        <div class="form-group">
+        {{ form.state_full.label(class='form-group') }}
+        {{ form.state_full(id='select_state', class="form-control") }}
+        </div>
+        <div class="form-group">
+        {{ form.city.label(class='form-group') }}
+        {{ form.city(id='select_city', class="form-control") }}
+        </div>
+        <div class="form-group">
+        {{ form.station.label(class='form-group') }}
+        {{ form.station(id='select_station', class="form-control") }}
+        </div>
+        <br>
+      </form>
+    </div>
+
+    <div class="col-sm-10 text-white px-3 form-group">
+      <div class="row no-gutters align-items-center">
+
+          <div class="col-sm-6 text-white px-3 form-group">
+            <br>
+          <h1>Current Conditions</h1>
+          <p id='station'></p>
+          <br>
+          <h2 id='descrip'></h2>
+          <br>
+          <h3 id='temp'></h3>
+          <h3 id='feels_like'></h3>
+          <br>
+          <h3 id='relH'></h3> <br>
+          </div>
+
+          <div class="col-sm-6 text-white px-3 form-group">
+            <br>
+            <br>
+            <h5 id='windD_deg'></h5>
+          <img id='compass' src="../static/images/compass_arrow_copy.png" width=250 height=250>
+          </div>
+
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

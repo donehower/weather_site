@@ -1,0 +1,19 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-image: url("../images/rainbow_sky.jpg");
+  /*background-image: linear-gradient(to top, white , cornflowerblue, cornflowerblue);*/
+  background-size: 120%;
+  background-attachment: fixed;
+}
+
+#white_alpha {
+  background-color: rgb(249, 249, 249, 0.3)
+}
+
+#white_solid {
+  background-color: rgb(255, 255, 255, 1.0)
+}
+
+#nav_bar_bg {
+  background-color: rgb(100, 149, 237, 1.0)
+}
