@@ -50,7 +50,7 @@ function drawState(userState) {
         .attr("width", "960px");
 
   // Append Div for tooltip to SVG
-  var div = d3.select("div")
+  var div = d3.select("#state_image")
           .append("div")
           .attr("class", "tooltip")
           .style("opacity", 0);
@@ -78,8 +78,7 @@ function drawState(userState) {
          .enter()
          .append("path")
          .attr("d", path)
-         //.style("fill", "rgb(100, 149, 237, 0.7)")
-         .style("fill", "rgb(25, 25, 112, 0.7)")
+         .style("fill", "rgb(100, 149, 237, 0.7)")
 
          .on("click", function() {
            div.style("opacity", 0)
@@ -106,7 +105,7 @@ function drawState(userState) {
                    })
               .attr("r", 1)
               .style("fill", "rgb(214, 224, 24, 1.0)")
-              .style("stroke-width", "7")
+              .style("stroke-width", "10")
               .style("stroke", "rgb(214, 224, 24, 0.3)")
 
               .on("click", function(d) {
@@ -269,8 +268,8 @@ $( document ).ready(function() {
 }); // end of all form functions
 </script>
 
-<div class="row no-gutters" id="background_image">
-  <div class="col-2 text-white px-3 form-group">
+<div class="row no-gutters" id="state_image">
+  <div class="col-sm-2 text-white px-3 form-group">
       <br>
       <form method="POST" enctype="multipart/form-data" >
         {{form.hidden_tag() }}
@@ -292,28 +291,29 @@ $( document ).ready(function() {
     </form>
   </div>
 
-  <div class="col-10 text-white">
-      <div class="row no-gutters align-items-center" id="chart" ></div>
+  <div class="col-sm-10 text-white" >
+      <div id="chart" >
 
-      <div class="row no-gutters" id="conditions_report">
-          <div class="col-sm-6 text-white px-3 form-group">
-              <br>
-              <h1 id='report_header'>Current Conditions</h1>
-              <p id='station'></p>
-              <br>
-              <h2 id='descrip'></h2>
-              <br>
-              <h3 id='temp'></h3>
-              <h3 id='feels_like'></h3>
-              <br>
-              <h3 id='relH'></h3> <br>
-          </div>
+          <div class="row no-gutters" id="conditions_report">
+              <div class="col-sm-6 text-white px-3 form-group">
+                  <br>
+                  <h1 id='report_header'>Current Conditions</h1>
+                  <p id='station'></p>
+                  <br>
+                  <h2 id='descrip'></h2>
+                  <br>
+                  <h3 id='temp'></h3>
+                  <h3 id='feels_like'></h3>
+                  <br>
+                  <h3 id='relH'></h3> <br>
+              </div>
 
-          <div class="col-sm-6 text-whit px-3 form-group">
-              <br>
-              <br>
-              <h5 id='windD_deg'></h5>
-              <img id='compass' src="../static/images/compass_arrow_copy.png" width=250 height=250>
+              <div class="col-sm-6 text-white px-3 form-group">
+                  <br>
+                  <br>
+                  <h5 id='windD_deg'></h5>
+                  <img id='compass' src="../static/images/compass_arrow_copy.png" width=250 height=250>
+              </div>
           </div>
       </div>
   </div>
