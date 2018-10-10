@@ -3,7 +3,7 @@ import json
 
 
 def get_current_conditions(station_id):
-
+    # create url for API call
     url_1 = 'https://api.weather.gov/stations/'
     station_id = station_id
     url_2 = '/observations/current'
@@ -16,11 +16,13 @@ def get_current_conditions(station_id):
     res = res.content.decode('utf-8', 'ignore')
     res = json.loads(res)
 
+    # Dictionary for converting wind directions from degress to cardinal direction
     dir_index = {'1': 'N', '2': 'NNE', '3': 'NE', '4': 'ENE', '5': 'E',
                  '6': 'ESE', '7': 'SE', '8': 'SSE', '9': 'S', '10': 'SSW',
                  '11': 'SW', '12': 'WSW', '13': 'W', '14': 'WNW', '15': 'NW',
                  '16': 'NNW', '17': 'N', '18': ' '}
 
+    # Methods for data conversions
     def degree_to_cardinal(degree):
         if degree is ' ':
             return dir_index['18']
@@ -44,18 +46,22 @@ def get_current_conditions(station_id):
             heatIndex = c_to_f(heatIndex)
             return str(round(heatIndex))
 
+    # Test whether a valid response was provided
+    # Return zero if API response held not valid data
     has_response = res.get('properties', 0)
     if has_response == 0:
         return 0;
     else:
         # Descriptive Conditions
         text_conditions = res['properties']['textDescription']
+
         # Temperature (reported as celsius and converted to fahrenheit)
         tc = res['properties']['temperature']['value']
         if isinstance(tc, float) or isinstance(tc, int):
             tf = c_to_f(tc)
         else:
             tf = "Unavailable"
+
         # Wind direction and speed (converted from m/s to mph)
         windD_deg = res['properties']['windDirection']['value']
         if isinstance(windD_deg, float) or isinstance(windD_deg, int):
@@ -77,6 +83,7 @@ def get_current_conditions(station_id):
             relH = round(relH)
         else:
             relH = "Unavailable"
+
         # Wind chill and heat index
         windChill = res['properties']['windChill']['value']
         heatIndex = res['properties']['heatIndex']['value']
@@ -85,10 +92,12 @@ def get_current_conditions(station_id):
         else:
             feels_like = tf
 
+        # Results to return as a dictionary
         conditions = {'descrip': text_conditions, 'temp': tf,
                       'windD_deg': windD_deg, 'windD_card': windD_card,
                       'windS': windS, 'relH': relH, 'feels_like': feels_like}
-
+        # Check for number of unavailble values
+        # Return zero if there are three or more "Unavailable values"
         conditions_vals = list(conditions.values())
         if conditions_vals.count("Unavailable") > 2:
             return 0
