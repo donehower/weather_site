@@ -44,33 +44,37 @@ def get_current_conditions(station_id):
             heatIndex = c_to_f(heatIndex)
             return str(round(heatIndex))
 
-    # Descriptive Conditions
-    text_conditions = res['properties']['textDescription']
-    # Temperature (reported as celsius and converted to fahrenheit)
-    tc = res['properties']['temperature']['value']
-    tf = c_to_f(tc)
-    # Wind direction and speed (converted from m/s to mph)
-    windD_deg = res['properties']['windDirection']['value']
-    if windD_deg is type(None):
-        windD_deg = ' '
-    if windD_deg is not type(None):
-        windD_deg = round(windD_deg)
+    has_response = res.get('properties', 0)
+    if has_response == 0:
+        return 0;
+    else:
+        # Descriptive Conditions
+        text_conditions = res['properties']['textDescription']
+        # Temperature (reported as celsius and converted to fahrenheit)
+        tc = res['properties']['temperature']['value']
+        tf = c_to_f(tc)
+        # Wind direction and speed (converted from m/s to mph)
+        windD_deg = res['properties']['windDirection']['value']
+        if windD_deg is type(None):
+            windD_deg = ' '
+        if windD_deg is not type(None):
+            windD_deg = round(windD_deg)
 
-    windD_card = degree_to_cardinal(windD_deg)
-    windS = res['properties']['windSpeed']['value']
-    if windS is type(None):
-        windS = ' '
-    if windS is not type(None):
-        windS = windS * 2.236936
-    #Relative Humidity
-    relH = round(res['properties']['relativeHumidity']['value'])
-    # Wind chill and heat index
-    windChill = res['properties']['windChill']['value']
-    heatIndex = res['properties']['heatIndex']['value']
-    feels_like = feels_like(windChill, heatIndex)
+        windD_card = degree_to_cardinal(windD_deg)
+        windS = res['properties']['windSpeed']['value']
+        if windS is type(None):
+            windS = ' '
+        if windS is not type(None):
+            windS = windS * 2.236936
+        #Relative Humidity
+        relH = round(res['properties']['relativeHumidity']['value'])
+        # Wind chill and heat index
+        windChill = res['properties']['windChill']['value']
+        heatIndex = res['properties']['heatIndex']['value']
+        feels_like = feels_like(windChill, heatIndex)
 
-    conditions = {'descrip': text_conditions, 'temp': tf,
-                  'windD_deg': windD_deg, 'windD_card': windD_card,
-                  'windS': windS, 'relH': relH, 'feels_like': feels_like}
+        conditions = {'descrip': text_conditions, 'temp': tf,
+                      'windD_deg': windD_deg, 'windD_card': windD_card,
+                      'windS': windS, 'relH': relH, 'feels_like': feels_like}
 
-    return conditions
+        return conditions
