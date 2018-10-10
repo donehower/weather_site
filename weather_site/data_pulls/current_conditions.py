@@ -25,9 +25,9 @@ def get_current_conditions(station_id):
         if degree is ' ':
             return dir_index['18']
         else:
-            temp = round((degree % 360) / 22.5) + 1
-            temp = str(temp)
-            return dir_index[temp]
+            temp_var = round((degree % 360) / 22.5) + 1
+            temp_var = str(temp_var)
+            return dir_index[temp_var]
 
     def c_to_f(tc):
         return round(tc * (9/5) + 32)
@@ -51,15 +51,18 @@ def get_current_conditions(station_id):
     tf = c_to_f(tc)
     # Wind direction and speed (converted from m/s to mph)
     windD_deg = res['properties']['windDirection']['value']
-    if windD_deg is None:
+    if windD_deg is type(None):
         windD_deg = ' '
-    if windD_deg is not None:
+    if windD_deg is not type(None):
         windD_deg = round(windD_deg)
 
     windD_card = degree_to_cardinal(windD_deg)
     windS = res['properties']['windSpeed']['value']
-    windS = res['properties']['windSpeed']['value'] * 2.236936
-    # Relative Humidity
+    if windS is type(None):
+        windS = ' '
+    if windS is not type(None):
+        windS = windS * 2.236936
+    #Relative Humidity
     relH = round(res['properties']['relativeHumidity']['value'])
     # Wind chill and heat index
     windChill = res['properties']['windChill']['value']
