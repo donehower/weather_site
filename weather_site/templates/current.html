@@ -209,6 +209,14 @@ $( document ).ready(function() {
 
         $.get("{{ url_for('weather._get_conditions') }}", send, function(data) {
           console.log(data)
+          if (data == 0) {
+            $('#no_response').html("\
+              <br>Sorry.\
+              <br>There's no data for that station.\
+              <br>Please choose another station.\
+              ");
+            $('#conditions_report').css('display', 'none');
+          }
           $('#descrip').text(data.descrip)
           $('#station').text("Station:  " + send.station)
           $('#temp').text("Temperature:  " + data.temp + '\u2109')
@@ -264,10 +272,11 @@ $( document ).ready(function() {
 
   <div class="col-sm-10 text-white" >
       <div id="chart" ></div>
+      <h2 align="center" id='no_response'></h2>
 
           <div class="row no-gutters" id="conditions_report">
               <div class="col-sm-6 text-white px-3 form-group">
-                  <br>
+
                   <h1 id='report_header'>Current Conditions</h1>
                   <p id='station'></p>
                   <br>
