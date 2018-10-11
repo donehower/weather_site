@@ -143,29 +143,6 @@ function drawState(userState) {
     };
     // call to update on load
     updateStations();
-    updateCities();
-
-    // function to call XHR and update city dropdown
-    function updateCities() {
-      var send = {
-        state: dropdown.state.val()
-      };
-      dropdown.city.attr('disabled', 'disabled');
-      dropdown.city.empty();
-      $.getJSON("{{ url_for('weather._get_cities') }}", send, function(data) {
-        dropdown.city.prepend("<option value='' selected='selected'></option>");
-        data.forEach(function(item) {
-          dropdown.city.append(
-            $('<option>', {
-              value: item[0],
-              text: item[1]
-            })
-          );
-        });
-        dropdown.city.removeAttr('disabled');
-      });
-      drawState(send.state);
-    }
 
     function getState() {
       var send = {
@@ -194,6 +171,7 @@ function drawState(userState) {
         });
         dropdown.station.removeAttr('disabled');
       });
+      drawState(send.state);
     }
 
     // event listener to state dropdown change
