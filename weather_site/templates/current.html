@@ -174,7 +174,6 @@ function drawState(userState) {
         var new_state = getState();
         drawState(new_state);
         updateStations();
-
       });
 
       // event listener for station to retrieve conditions
@@ -182,8 +181,7 @@ function drawState(userState) {
         var send = {
           station: dropdown.station.val()
         };
-
-
+        
           $.get("{{ url_for('weather._get_conditions') }}", send, function(data) {
             console.log(data)
             if (data == 0) {
