@@ -187,8 +187,7 @@ function drawState(userState) {
       var send = {
         station: dropdown.station.val()
       };
-      $('#conditions_report').css('display', 'inline');
-      $('#chart').css('display', 'none');
+
 
         $.get("{{ url_for('weather._get_conditions') }}", send, function(data) {
           console.log(data)
@@ -234,9 +233,9 @@ function drawState(userState) {
               $('body').css( {'background-image':'url(../static/images/wood.jpg/)', 'background-size':'cover'});
           }
         }
-
-
-        }); // end of function to display api response data
+      }); // end of function to display api response data
+      $('#conditions_report').css('display', 'inline');
+      $('#chart').css('display', 'none');
 
     }); // end of event listener to retrieve conditions
 }); // end of all form functions
