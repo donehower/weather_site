@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint
-from flask import request, jsonify, redirect, url_for
+from flask import request, jsonify
 from bokeh.embed import components
 from weather_site.graphs.graphs_bar import bar_1
 from weather_site.weather.forms import FindLocation
