@@ -53,7 +53,7 @@ function drawState(userState) {
           .attr("width", "1024px");
 
     // Append Div for tooltip to SVG
-    var div = d3.select("#state_image")
+    var station_label = d3.select("#state_image")
             .append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
@@ -112,10 +112,10 @@ function drawState(userState) {
                 .style("stroke", "rgb(204, 209, 255, 0.5)")
 
                 .on("click", function(d) {
-                  div.transition()
+                  station_label.transition()
                         .duration(200)
                         .style("opacity", .9);
-                  div.text(d.name)
+                  station_label.text(d.name)
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY-28) + "px");
 
