@@ -181,7 +181,7 @@ function drawState(userState) {
         var send = {
           station: dropdown.station.val()
         };
-        
+
           $.get("{{ url_for('weather._get_conditions') }}", send, function(data) {
             console.log(data)
             if (data == 0) {
@@ -214,11 +214,11 @@ function drawState(userState) {
             }
 
             if (data.descrip != " ") {
-              if (data.descrip.includes("Cloudy")) {
-                $('body').css( {'background-image':'url(../static/images/cloudy.jpg/)', 'background-size':'cover'} );
-              }
               if (data.descrip.includes("Clear")) {
                 $('body').css( {'background-image':'url(../static/images/clear.jpg/)', 'background-size':'cover'} );
+              }
+              if (data.descrip.includes("Partly Cloudy")) {
+                $('body').css( {'background-image':'url(../static/images/partly_cloudy.jpg/)', 'background-size':'cover'} );
               }
             }
 
