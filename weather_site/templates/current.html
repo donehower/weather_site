@@ -181,7 +181,8 @@ function drawState(userState) {
         var send = {
           station: dropdown.station.val()
         };
-
+          $('#chart').css('display', 'none');
+          $('div.tooltip').css('display', 'none')
           $.get("{{ url_for('weather._get_conditions') }}", send, function(data) {
             console.log(data)
             if (data == 0) {
@@ -241,7 +242,7 @@ function drawState(userState) {
           }
         }); // end of function to display api response data
         $('#conditions_report').css('display', 'inline');
-        $('#chart').css('display', 'none');
+
 
       }); // end of event listener to retrieve conditions
 }); // end of all form functions
