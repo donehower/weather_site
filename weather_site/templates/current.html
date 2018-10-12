@@ -214,12 +214,25 @@ function drawState(userState) {
             }
 
             if (data.descrip != " ") {
-              if (data.descrip.includes("Clear")) {
-                $('body').css( {'background-image':'url(../static/images/clear.jpg/)', 'background-size':'cover'} );
-              }
-              if (data.descrip.includes("Partly Cloudy")) {
-                $('body').css( {'background-image':'url(../static/images/partly_cloudy.jpg/)', 'background-size':'cover'} );
-              }
+                if (data.descrip.includes("Clear")) {
+                  $('body').css( {'background-image':'url(../static/images/clear.jpg/)', 'background-size':'cover'} );
+                } else if (data.descrip.includes("Partly Cloudy")) {
+                  $('body').css( {'background-image':'url(../static/images/partly_cloudy.jpg/)', 'background-size':'cover'} );
+                }
+                else if (data.descrip.includes("Cloudy")) {
+                  $('body').css( {'background-image':'url(../static/images/cloudy.jpg/)', 'background-size':'cover'} );
+                }
+                else if (data.descrip.includes("Rain")) {
+                  $('body').css( {'background-image':'url(../static/images/rain.jpg/)', 'background-size':'cover'} );
+                }
+                else if (data.descrip.includes("Snow")) {
+                  $('body').css( {'background-image':'url(../static/images/snow.jpg/)', 'background-size':'cover'} );
+                }
+                else if (data.descrip.includes("Fog")) {
+                  $('body').css( {'background-image':'url(../static/images/fog.jpg/)', 'background-size':'cover'} );
+                }else {
+                  $('body').css( {'background-color':'background-color: rgb(3, 5, 112)'} );
+                }
             }
 
             if (data.script == " ") {
