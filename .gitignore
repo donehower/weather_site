@@ -1,3 +1,5 @@
 *.pyc
 /instance
 /data_setup
+scratch_mongo.py
+scratch.py
