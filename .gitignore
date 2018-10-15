@@ -1,2 +1,3 @@
 *.pyc
 /instance
+/data_setup
