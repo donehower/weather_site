@@ -14,24 +14,6 @@ def main():
 
     engine = create_engine(URL(**db_url))
 
-    # Base = declarative_base()
-    # class Locations(Base):
-    #     __tablename__ = 'locations'
-    #
-    #     id = Column(Integer, primary_key=True)
-    #     name = Column(String(255), unique=True, primary_key=True)
-    #     city = Column(String(255))
-    #     state = Column(String(255))
-    #     station_id = Column(String(10), unique=True)
-    #     forecast_url = Column(String(255))
-    #     hourForecast_url = Column(String(255))
-    #
-    # Base.metadata.create_all(engine)
-
-    # Session = sessionmaker(bind=engine)
-    # session = Session()
-    # session.add(Locations(**data))
-
     meta = MetaData(engine)
     locations = Table('locations', meta,
                       Column('id', Integer, primary_key=True, autoincrement=True),
@@ -47,7 +29,7 @@ def main():
     if locations in ins.get_table_names():
         locations.drop()
     meta.create_all(bind=engine)
-    # locations.create()
+    locations.create()
 
     with open('locations_details_v2.txt', encoding='utf-8') as f:
         data = json.loads(f.read())
