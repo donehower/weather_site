@@ -29,7 +29,6 @@ def main():
     if locations in ins.get_table_names():
         locations.drop()
     meta.create_all(bind=engine)
-    locations.create()
 
     with open('locations_details_v2.txt', encoding='utf-8') as f:
         data = json.loads(f.read())
