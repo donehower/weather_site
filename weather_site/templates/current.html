@@ -217,21 +217,21 @@ function drawState(userState) {
             var descrip = data.descrip.toLowerCase()
             if (data.descrip != " ") {
                 if (descrip.includes("clear")) {
-                  $('body').css( {'background-image':'url(../static/images/clear.jpg/)', 'background-size':'cover'} );
+                  $('body').css( {'background-image':'url(../static/images/clear.jpg/)'} );
                 } else if (descrip.includes("partly cloudy")) {
-                  $('body').css( {'background-image':'url(../static/images/partly_cloudy.jpg/)', 'background-size':'cover'} );
+                  $('body').css( {'background-image':'url(../static/images/partly_cloudy.jpg/)'} );
                 }
                 else if (descrip.includes("cloudy")) {
-                  $('body').css( {'background-image':'url(../static/images/cloudy.jpg/)', 'background-size':'cover'} );
+                  $('body').css( {'background-image':'url(../static/images/cloudy.jpg/)'} );
                 }
                 else if (descrip.includes("rain")) {
-                  $('body').css( {'background-image':'url(../static/images/rain.jpg/)', 'background-size':'cover'} );
+                  $('body').css( {'background-image':'url(../static/images/rain.jpg/)'} );
                 }
                 else if (descrip.includes("snow")) {
-                  $('body').css( {'background-image':'url(../static/images/snow.jpg/)', 'background-size':'cover'} );
+                  $('body').css( {'background-image':'url(../static/images/snow.jpg/)'} );
                 }
                 else if (descrip.includes("fog")) {
-                  $('body').css( {'background-image':'url(../static/images/fog.jpg/)', 'background-size':'cover'} );
+                  $('body').css( {'background-image':'url(../static/images/fog.jpg/)'} );
                 }else {
                   $('body').css( {'background-color':'background-color: rgb(3, 5, 112)'} );
                 }

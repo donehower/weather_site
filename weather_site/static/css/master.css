@@ -4,6 +4,8 @@ body {
   /* background-size: 120%; */
   /* background-attachment: fixed; */
   background-color: rgb(3, 5, 112);
+  background-size: auto 110%;
+  background-repeat: no-repeat;
 }
 
 #white_alpha {
