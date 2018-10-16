@@ -194,6 +194,7 @@ function drawState(userState) {
                 ");
               $('#conditions_report').css('display', 'none');
             } else {
+            $('body').addClass('report_bg');
             $('#descrip').text(data.descrip)
             $('#station').text("Station:  " + send.station)
             $('#temp').text("Temperature:  " + data.temp + '\u2109')
@@ -217,10 +218,10 @@ function drawState(userState) {
 
             var descrip = data.descrip.toLowerCase()
             if (data.descrip != " ") {
-                $('body').removeClass('new_page').addClass('report_bg');
                 if (descrip.includes("clear")) {
                   $('body').css( {'background-image':'url(../static/images/clear.jpg/)'} );
-                } else if (descrip.includes("partly cloudy")) {
+                }
+                else if (descrip.includes("partly cloudy")) {
                   $('body').css( {'background-image':'url(../static/images/partly_cloudy.jpg/)'} );
                 }
                 else if (descrip.includes("cloudy")) {
