@@ -17,3 +17,9 @@ body {
 #nav_bar_bg {
   background-color: rgb(100, 149, 237, 1.0)
 }
+
+#menu_directions {
+  color: rgb(255, 255, 255, 0.7);
+  font-size: 14px;
+  text-align: center;
+}
