@@ -18,6 +18,7 @@ div.tooltip {
 // display state map with weather station locations
 $( document ).ready(function() {
       $('#conditions_report').css('display', 'none');
+      $('body').addClass("new_page");
   });
 
 // DRAW STATE MAP WITH WEATHER STATION LOCATIONS
@@ -216,6 +217,7 @@ function drawState(userState) {
 
             var descrip = data.descrip.toLowerCase()
             if (data.descrip != " ") {
+                $('body').removeClass('new_page').addClass('report_bg');
                 if (descrip.includes("clear")) {
                   $('body').css( {'background-image':'url(../static/images/clear.jpg/)'} );
                 } else if (descrip.includes("partly cloudy")) {
