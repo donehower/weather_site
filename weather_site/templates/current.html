@@ -223,6 +223,7 @@ function drawState(userState) {
 
             var descrip = data.descrip.toLowerCase()
             if (data.descrip != " ") {
+                $('div').addClass('text-white');
                 if (descrip.includes("clear")) {
                   $('body').css( {'background-image':'url(../static/images/clear.jpg/)'} );
                 }
@@ -240,6 +241,7 @@ function drawState(userState) {
                 }
                 else if (descrip.includes("fog")) {
                   $('body').css( {'background-image':'url(../static/images/fog.jpg/)'} );
+                  $('div').removeClass('text-white');
                 }else {
                   $('body').css( {'background-color':'background-color: rgb(3, 5, 112)'} );
                 }
