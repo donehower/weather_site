@@ -31,12 +31,15 @@ body {
 }
 
 #loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border: 16px solid rgb(219, 52, 129, 0.7); /* Light grey */
+    border-top: 16px solid rgb(233, 239, 40, 0.7); /* Blue */
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 60px;
+    height: 60px;
     animation: spin 2s linear infinite;
+    left: 50%;
+    top: 50%;
+    position: relative;
 }
 
 @keyframes spin {
