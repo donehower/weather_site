@@ -49,9 +49,11 @@ body {
 
 .about-bg {
   background-image: url("../images/sunset.jpg");
-  background-size: auto 110%;
+  background-size: cover;
+  color: white;
+  font-size: 18px;
 }
 
 #white_alpha {
-  background-color: rgb(249, 249, 249, 0.2)
+  background-color: rgb(249, 249, 249, 0.1)
 }
