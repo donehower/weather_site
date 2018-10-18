@@ -19,7 +19,6 @@ div.tooltip {
 $( document ).ready(function() {
       $('#conditions_report').css('display', 'none');
       $('body').addClass("new_page");
-      $('body').removeClass('report-bg');
       $('#loader').hide();
   });
 
@@ -199,8 +198,6 @@ function drawState(userState) {
             } else {
             $('#no_response').hide();
             $('#loader').hide();
-            $('body').removeClass('new_page');
-            $('body').addClass('report-bg');
             $('#conditions_report').css('display', 'inline');
             $('body').addClass('report_bg');
             $('#descrip').text(data.descrip)
