@@ -6,7 +6,7 @@ div.tooltip {
   text-align: center;
   padding: 2px;
   color: rgb(9, 0, 135);
-  background: rgb(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   border: 0px;
   border-radius: 8px;
   pointer-events: none;
@@ -83,7 +83,7 @@ function drawState(userState) {
            .enter()
            .append("path")
            .attr("d", path)
-           .style("fill", "rgb(255, 255, 255, 1.0)")
+           .style("fill", "rgba(255, 255, 255, 1.0)")
 
            .on("click", function() {
              station_label.style("opacity", 0);
@@ -111,7 +111,7 @@ function drawState(userState) {
                 .attr("r", 3)
                 .style("fill", "rgb(3, 5, 112, 1.0)")
                 .style("stroke-width", "10")
-                .style("stroke", "rgb(204, 209, 255, 0.5)")
+                .style("stroke", "rgba(204, 209, 255, 0.5)")
 
                 .on("click", function(d) {
                   station_label.style("opacity", .9);
