@@ -259,51 +259,50 @@ function drawState(userState) {
       }); // end of event listener to retrieve conditions
 }); // end of all form functions
 </script>
-
-<div class="row no-gutters" id="state_image">
-  <div class="col-sm-3 text-white px-3 form-group">
-    <br>
-    <p id="menu_directions">Choose a state then a weather station.
-      Click on a map point to find weather station names.</p>
-      <form method="POST" enctype="multipart/form-data" >
-        {{form.hidden_tag() }}
-        <div class="form-group">
-          {{ form.state_full.label(class='form-group') }}
-          {{ form.state_full(id='select_state', class="form-control") }}
-        </div>
-        <div class="form-group">
-          {{ form.station.label(class='form-group') }}
-          {{ form.station(id='select_station', class="form-control") }}
-        </div>
-        <br>
-        <button type="button" class="btn text-white bg-transparent border-white" onClick="window.location.reload()">New Location</button>
-        <br>
-    </form>
-
-  </div>
-
-  <div class="col-sm-9 text-white" >
-    <br>
-      <h2 id="no_response" align="center"></h2>
-      <div id="chart" ></div>
-          <div id="loader"></div>
-          <div class="row no-gutters" id="conditions_report">
-                  <h1 id='report_header'>Current Conditions</h1>
-                  <p id='station'></p>
-                  <br>
-                  <h2 id='descrip'></h2>
-                  <br>
-                  <h3 id='temp'></h3>
-                  <h3 id='feels_like'></h3>
-                  <br>
-                  <h3 id='relH'></h3> <br>
-
-                  <br>
-                  <br>
-                  <h5 id='windD_deg'></h5>
-                  <img id='compass' src="../static/images/compass_arrow_copy.png" width=250 height=250>
+<div class="container">
+  <div class="row no-gutters" id="state_image">
+    <div class="col-sm-3 text-white px-3 form-group">
+      <br>
+      <p id="menu_directions">Choose a state then a weather station.
+        Click on a map point to find weather station names.</p>
+        <form method="POST" enctype="multipart/form-data" >
+          {{form.hidden_tag() }}
+          <div class="form-group">
+            {{ form.state_full.label(class='form-group') }}
+            {{ form.state_full(id='select_state', class="form-control") }}
           </div>
-  </div>
+          <div class="form-group">
+            {{ form.station.label(class='form-group') }}
+            {{ form.station(id='select_station', class="form-control") }}
+          </div>
+          <br>
+          <button type="button" class="btn text-white bg-transparent border-white" onClick="window.location.reload()">New Location</button>
+          <br>
+      </form>
+    </div>
 
+    <div class="col-sm-9 text-white" >
+      <br>
+        <h2 id="no_response" align="center"></h2>
+        <div id="chart" ></div>
+            <div id="loader"></div>
+            <div class="row no-gutters" id="conditions_report">
+                    <h1 id='report_header'>Current Conditions</h1>
+                    <p id='station'></p>
+                    <br>
+                    <h2 id='descrip'></h2>
+                    <br>
+                    <h3 id='temp'></h3>
+                    <h3 id='feels_like'></h3>
+                    <br>
+                    <h3 id='relH'></h3> <br>
+
+                    <br>
+                    <br>
+                    <h5 id='windD_deg'></h5>
+                    <img id='compass' src="../static/images/compass_arrow_copy.png" width=250 height=250>
+            </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
