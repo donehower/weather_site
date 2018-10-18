@@ -59,6 +59,5 @@ body {
 }
 
 #white_alpha {
-  background-color: rgb(249, 249, 249);
-  opacity: 0.1;
+  background-color: rgba(249, 249, 249, 0.1);
 }
