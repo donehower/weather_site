@@ -86,9 +86,7 @@ function drawState(userState) {
            .style("fill", "rgb(255, 255, 255, 1.0)")
 
            .on("click", function() {
-             station_label.transition()
-                   .duration(200)
-                   .style("opacity", 0);
+             station_label.style("opacity", 0);
            });
 
         d3.json("static/locations_details_v2.txt", function(txt) {
@@ -116,9 +114,7 @@ function drawState(userState) {
                 .style("stroke", "rgb(204, 209, 255, 0.5)")
 
                 .on("click", function(d) {
-                  station_label.transition()
-                        .duration(200)
-                        .style("opacity", .9);
+                  station_label.style("opacity", .9);
                   station_label.text(d.name)
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY-28) + "px");
