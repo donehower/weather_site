@@ -14,29 +14,26 @@ body {
 }
 
 #white_alpha {
-  background-color: rgb(249, 249, 249, 0.3);
+  background-color: rgba(249, 249, 249, 0.3);
 }
 
 #white_solid {
-  background-color: rgb(255, 255, 255, 1.0);
+  background-color: rgba(255, 255, 255, 1.0);
 }
 
 #nav_bar_bg {
-  background-color: rgb(100, 149, 237);
-  opacity: 1.0;
+  background-color: rgba(100, 149, 237, 1.0);
 }
 
 #menu_directions {
-  color: rgb(255, 255, 255);
-  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
   text-align: center;
 }
 
 #loader {
-    border: 16px solid rgb(219, 52, 129);
-    opacity: 0.7;
-    border-top: 16px solid rgb(233, 239, 40);
+    border: 16px solid rgba(219, 52, 129, 0.7);
+    border-top: 16px solid rgba(233, 239, 40, 0.7);
     border-radius: 50%;
     width: 60px;
     height: 60px;
