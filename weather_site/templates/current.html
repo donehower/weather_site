@@ -225,10 +225,10 @@ function drawState(userState) {
             if (data.descrip != " ") {
                 $('div').addClass('text-white');
                 if (descrip.includes("clear")) {
-                  $('body').css( {'background-image':"url('static', filename='clear.jpg')"} );
+                  $('body').css( {'background-image':"url('image', filename='clear.jpg')"} );
                 }
                 else if (descrip.includes("partly cloudy")) {
-                  $('body').css( {'background-image':'url(../static/images/partly_cloudy.jpg/)'} );
+                  $('body').css( {'background-image':"url('image', filename='partly_cloudy.jpg')"} );
                 }
                 else if (descrip.includes("cloudy")) {
                   $('body').css( {'background-image':'url(../static/images/cloudy.jpg/)'} );
