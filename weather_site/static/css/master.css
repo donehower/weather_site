@@ -22,18 +22,21 @@ body {
 }
 
 #nav_bar_bg {
-  background-color: rgb(100, 149, 237, 1.0);
+  background-color: rgb(100, 149, 237);
+  opacity: 1.0;
 }
 
 #menu_directions {
-  color: rgb(255, 255, 255, 0.7);
+  color: rgb(255, 255, 255);
+  opacity: 0.7;
   font-size: 14px;
   text-align: center;
 }
 
 #loader {
-    border: 16px solid rgb(219, 52, 129, 0.7); /* Light grey */
-    border-top: 16px solid rgb(233, 239, 40, 0.7); /* Blue */
+    border: 16px solid rgb(219, 52, 129);
+    opacity: 0.7;
+    border-top: 16px solid rgb(233, 239, 40);
     border-radius: 50%;
     width: 60px;
     height: 60px;
