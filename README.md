@@ -1,4 +1,4 @@
-# whatevertheweather.info
+# www.whatevertheweather.info
 
 The site is built with Flask incorporating Bootstrap for styling and jQuery for interactivity.  It's currently hosted on an 
 AWS Lightsail instance running Ubuntu 16.04 Linux and gunicorn/nginx.
