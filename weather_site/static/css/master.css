@@ -7,14 +7,15 @@ body {
 }
 
 .new_page {
-  background-image: url("../images/sunset.jpg");
-  background-size: 100% 110%;
-  background-repeat: no-repeat;
+  background-image: url("../images/sunset.jpg") no-repeat center center fixed;
+  /* background-size: 100% 110%; */
+  /* background-repeat: no-repeat; */
+  background-size: cover;
 }
 
 .report-bg {
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: auto 100%;
 }
 
 #white_alpha {
