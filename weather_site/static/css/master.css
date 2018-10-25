@@ -2,6 +2,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.plain_text {
+  font-size: calc(18px - 0.25vw);
+}
+
 .new_page {
   background-image: url("../images/sunset.jpg");
   background-size: 100% 110%;
