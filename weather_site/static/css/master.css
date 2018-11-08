@@ -63,3 +63,108 @@ body {
 #white_alpha {
   background-color: rgba(249, 249, 249, 0.1);
 }
+
+#current_time {
+  color: rgba(100, 100, 100, 1);
+}
+
+/* ----------------------------------------------------------- */
+/* D3 styling */
+.chart_title {
+  font-size: 14px;
+  fill: rgba(75, 75, 75, 1.0);
+}
+
+.line_temp {
+  fill: none;
+  stroke: rgba(100, 149, 237, 1.0);
+  stroke-width: 1.5;
+}
+
+.line_humid, .line_pp {
+  stroke: rgba(250,128,114, 1.0);
+  stroke-width: 1.0;
+  fill: none;
+}
+
+.axis_left text, .axis_left_label, .t, .cc{
+  fill: rgba(100, 149, 237, 1.0);
+}
+
+.axis_right text, .axis_right_label, .pp{
+  fill: rgba(250,128,114, 1.0);
+}
+
+.axis_left path, .line {
+  stroke: rgba(100, 100, 100, 1.0);
+}
+
+.axis_left_label, .axis_right_label {
+  font-size: calc(20px - 0.25vw);
+  font-family: Arial;
+}
+
+.axis_right path, line {
+  stroke: rgba(100, 100, 100, 1.0);
+}
+
+.axis_left text, .axis_right text {
+  font-size: 16px;
+}
+
+.axis_day path{
+  stroke: rgba(0, 0, 0, 0);
+}
+
+.axis_hour text {
+  font-size: 14px;
+}
+
+.axis_day text {
+  font-size: 16px;
+}
+
+.axis_hour path, line {
+  stroke: rgba(100, 100, 100, 1.0);
+}
+
+.d, .t, .h, .cc, .pp {
+  font-size: 12px;
+}
+
+.d {
+  fill: rgba(100, 100, 100, 1.0);
+}
+
+.h {
+  fill: rgba(250,128,114, 1.0);
+}
+
+.area_cloud {
+  fill: rgba(100, 149, 237, 0.5);
+  opacity: 0.5;
+}
+
+.v_line {
+  stroke-width: 2;
+  stroke: rgba(100, 100, 100, 0.2);
+}
+
+.v_line_2 {
+  stroke-width: 2;
+  stroke: rgba(100, 100, 100, 0.2);
+}
+
+.wedge_label {
+  font-size: 14px;
+  fill: rgba(75, 75, 75, 1);
+}
+
+.compass_label {
+  font-size: 18px;
+  fill: rgba(0, 0, 0, 1);
+}
+
+.arc {
+  fill: rgba(255, 0, 0, 0.5);
+}
