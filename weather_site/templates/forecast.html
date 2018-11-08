@@ -1,15 +1,123 @@
 {% extends "base.html" %}
 {% block content %}
+<link rel="stylesheet" href="static/css/master.css">
+<script src="https://d3js.org/d3.v4.js"></script>
+<script charset="utf-8" type="text/javascript">
+$( document ).ready(function() {
+      $('#title_summary').css('display', 'none');
+  });
+// Start of function for the dropdown menus
+  $(function() {
 
-<div id="graph_a">
-  {{ script|safe }}
-  {{ div|safe }}
-  <p>Here's some text to provide explanation about the graph.</p>
+    // jQuery selection for the 2 select boxes
+    var dropdown = {
+      state: $('#select_state'),
+      city: $('#select_city')
+    };
+    // call to update on load
+    updateCities();
+
+    // function to call XHR and update city dropdown
+    function updateCities() {
+      var send = {
+        state: dropdown.state.val()
+      };
+      dropdown.city.attr('disabled', 'disabled');
+      dropdown.city.empty();
+      $.getJSON("{{ url_for('weather._get_forecast_cities') }}", send, function(data) {
+        dropdown.city.prepend("<option value='' selected='selected'></option>");
+        data.forEach(function(item) {
+          dropdown.city.append(
+            $('<option>', {
+              value: item[0],
+              text: item[1]
+            })
+          );
+        });
+        dropdown.city.removeAttr('disabled');
+      });
+    }
+
+    // function to call XHR and update city dropdown
+    function get_forecast_data() {
+      var send = {
+        city: dropdown.city.val()
+      };
+      // dropdown.city.attr('disabled', 'disabled');
+      // dropdown.city.empty();
+      $.getJSON("{{ url_for('weather._get_forecast_data') }}", send, function(data) {
+        console.log(data);
+        $('#title_summary').css('display', 'inline');
+        draw_forecast(data);
+        $('#city_name').text(data.city + ", " + data.state);
+        var current_d = new Date();
+        $('#current_time').text(" " + current_d);
+      });
+    }
+
+    // event listener to state dropdown change
+    dropdown.state.on('change', function() {
+      updateCities();
+
+    });
+
+    // event listener to city dropdown change
+    dropdown.city.on('change', function() {
+      var send = {
+        city: dropdown.city.val()
+      }
+      get_forecast_data();
+
+    });
+
+}); // end of all form functions
+</script>
+
+<div class="container-fluid">
+
+  <div class="form-group">
+    <br>
+    <p id="menu_directions">Choose a state then a city to get the five day forecast.</p>
+    <form method="POST" enctype="multipart/form-data" >
+      {{form.hidden_tag() }}
+        <div class="row">
+
+          <div class="col form-group">
+              {{ form.state_full.label(class='form-group') }}
+              {{ form.state_full(id='select_state', class="form-control") }}
+          </div>
+
+          <div class="col form-group">
+              {{ form.city.label(class='form-group') }}
+              {{ form.city(id='select_city', class="form-control") }}
+          </div>
+
+        </div>
+    </form>
+
+  </div>
+  <div class="container">
+
+    <div class="row align-items-center">
+      <div class="col-sm" id="title_summary">
+        <h1>5 Day Forecast</h1>
+        <h2 id='city_name'>5 Day Forecast</h2>
+        As of: <span id='current_time'></span>
+      </div>
+      <div class="col-sm">
+        <svg class="container-fluid" id="wind_compass"></svg>
+      </div>
+
+    </div>
+  </div>
+
+
+      <svg class="container-fluid" id="line_chart"></svg>
+      <svg class="container-fluid" id="area_chart"></svg>
+
+
+
+
 </div>
-
-
-
-
+<script src="static/js/forecast_5day.js"></script>
 {% endblock %}
-  </body>
-</html>
