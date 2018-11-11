@@ -1,6 +1,6 @@
 // ---------- Line chart Dimensions --------------- //
 //Width and height
-var margin = {top: 30, right: 50, bottom: 100, left: 50},
+var margin = {top: 50, right: 50, bottom: 100, left: 50},
     w = 900 - margin.left - margin.right,
     h = 375 - margin.top - margin.bottom;
 
@@ -188,7 +188,7 @@ function draw_forecast(data) {
 
           svg.append("text")
                 .attr("transform", "rotate(-90)")
-                .attr("y", 0 - margin.left/1.5)
+                .attr("y", 0 - margin.left)
                 .attr("x",0 - (h / 2))
                 .attr("dy", ".75em")
                 .style("text-anchor", "middle")
@@ -325,12 +325,13 @@ function draw_forecast(data) {
 // --------------------------------------------------------------------------//
         var wind_w = 250,
             wind_h = 250,
-            padding = {top: 10, right: 10, bottom: 10, left: 10};
+            padding = {top: 30, right: 10, bottom: 10, left: 10};
 
         // Create SVG
         var wind_compass = d3.select("#wind_compass")
             .attr("width", wind_w)
             .attr("height", wind_h)
+            .attr("class", "wind_compass_svg")
             .attr('preserveAspectRatio', 'xMidYMin meet')
             .attr('viewBox', '0 -20 ' + (wind_w+padding.left+padding.right) + ' ' + (wind_h+padding.top+padding.bottom))
 
@@ -372,15 +373,15 @@ function draw_forecast(data) {
               .text(function(d) { return d.direction} );
 
         wind_compass.append("text")
-              .attr("class", "chart_title")
-              .attr("x", 0)
+              .attr("class", "compass_title")
+              .attr("x", -25)
               .attr("y", margin.top/2)
               .attr("text-anchor", "start")
               .text("Wind Direction");
 
         wind_compass.append("text")
-              .attr("class", "chart_title")
-              .attr("x", 0)
+              .attr("class", "compass_title")
+              .attr("x", -25)
               .attr("y", margin.top+5)
               .attr("text-anchor", "start")
               .text("and Speed");
@@ -549,7 +550,7 @@ function draw_forecast(data) {
                       .text("Cloud Cover: " + cloudCover + "%")
                       .attr("transform",
                             "translate(" + xScale_t(date_t) + "," +
-                                           (margin.top-10) + ")");
+                                           (margin.top*.2) + ")");
 
                   focus_2.select("text.pp")
                       .transition()
@@ -566,7 +567,7 @@ function draw_forecast(data) {
                       })
                       .attr("transform",
                             "translate(" + xScale_t(date_t) + "," +
-                                           (margin.top-0) + ")");
+                                           (margin.top*.6) + ")");
             } // end of function for second tool tip
 
             // SVG to detect mouse movements
