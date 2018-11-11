@@ -64,8 +64,6 @@ function draw_forecast(data) {
         var min_ws = dataset.reduce((min, b) => Math.min(min, b.wind_speed), dataset[0].wind_speed);
         var max_ws = dataset.reduce((min, b) => Math.max(min, b.wind_speed), dataset[0].wind_speed);
 
-        console.log(min_temp, max_temp)
-
         // SCALE FUNCTIONS
         var xScale_t = d3.scaleTime()
                  .domain([
@@ -197,8 +195,8 @@ function draw_forecast(data) {
 
           svg.append("text")
                 .attr("class", "chart_title")
-                .attr("x", 0)
-                .attr("y", 0-15)
+                .attr("x", -10)
+                .attr("y", -15)
                 .attr("text-anchor", "start")
                 .text(chartTitle);
         }
@@ -211,7 +209,7 @@ function draw_forecast(data) {
 
           svg.append("text")
                 .attr("transform", "rotate(-90)")
-                .attr("y", w + (margin.right/2))
+                .attr("y", w + (margin.right/1.25))
                 .attr("x",0 - (h / 2))
                 .attr("dy", ".75em")
                 .style("text-anchor", "middle")
