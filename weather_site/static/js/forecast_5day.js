@@ -231,20 +231,15 @@ function draw_forecast(data) {
 
         // Add tooltip
         var focus = line_chart.append("g")
-              .style("display", "none")
-              .attr("class", "t");
+              .style("display", "none");
 
         // Circles for each line
         focus.append("circle")
               .attr("class", "t")
-              .style("fill", "cornflowerblue")
-              .style("stroke", "cornflowerblue")
               .attr("r", 4);
 
         focus.append("circle")
               .attr("class", "h")
-              .style("fill", "salmon")
-              .style("stroke", "salmon")
               .attr("r", 4);
 
         // Text for the date and each line
@@ -511,8 +506,6 @@ function draw_forecast(data) {
 
             focus_2.append("circle")
                   .attr("class", "cc")
-                  .style("fill", "rgba(100, 149, 237, 1.0)")
-                  .style("stroke", "rgba(100, 149, 237, 1.0)")
                   .style("display", "none")
                   .attr("r", 4);
 
