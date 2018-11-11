@@ -612,6 +612,9 @@ function draw_forecast(data) {
           needle.select("path.arc")
               .style("display", "none");
 
+          needle.select("text.wedge_label")
+              .style("display", "none");
+
           focus_2.select("text.cc")
               .style("display", "none");
 
