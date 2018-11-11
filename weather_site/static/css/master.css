@@ -207,3 +207,13 @@ body {
   display: block;
   margin: auto;
 }
+
+#national_map {
+  overflow: visible;
+  display: inline;
+  margin: auto;
+}
+
+.cityText {
+  font-size: 1.5rem
+}
