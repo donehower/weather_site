@@ -71,6 +71,7 @@ body {
 
 /* ----------------------------------------------------------- */
 /* D3 styling */
+/* ----------------------------------------------------------- */
 .chart_title {
   font-size: 1.5rem;
   fill: rgba(75, 75, 75, 1.0);
@@ -106,7 +107,7 @@ body {
 }
 
 .axis_left_label, .axis_right_label {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-family: Arial;
 }
 
@@ -115,7 +116,7 @@ body {
 }
 
 .axis_left text, .axis_right text {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
 }
 
 .axis_day path{
@@ -177,4 +178,6 @@ body {
 
 .wind_compass_svg {
   overflow: visible;
+  display: block;
+  margin: auto;
 }
