@@ -97,12 +97,12 @@ $( document ).ready(function() {
 
   </div>
   <div class="container">
-
+<svg class="container-fluid" id="national_map"></svg>
     <div class="row align-items-center">
       <div class="col-sm" id="title_summary">
         <h1>5 Day Forecast</h1>
         <h2 id='city_name'>5 Day Forecast</h2>
-        <p id="datetime">As of: <span id='current_time'></span></p> 
+        <p id="datetime">As of: <span id='current_time'></span></p>
       </div>
       <div class="col-sm">
         <svg class="container-fluid" id="wind_compass"></svg>
@@ -111,13 +111,11 @@ $( document ).ready(function() {
     </div>
   </div>
 
-
       <svg class="container-fluid" id="line_chart"></svg>
       <svg class="container-fluid" id="area_chart"></svg>
 
-
-
-
 </div>
+
 <script src="static/js/forecast_5day.js"></script>
+<script src="static/js/national_map.js"></script>
 {% endblock %}
