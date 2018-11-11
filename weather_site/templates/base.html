@@ -12,11 +12,6 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-    <!-- <link href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.css" rel="stylesheet" type="text/css"> -->
-    <!-- <link href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.5.min.css" rel="stylesheet" type="text/css"> -->
-    <!-- <script src="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.js"></script> -->
-    <!-- <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.5.min.js"></script> -->
-
     <link rel="stylesheet" href="static/css/master.css">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128216726-2"></script>
@@ -38,10 +33,9 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="navbar-nav mr-auto ">
-          <a class="nav-link text-white" href="{{ url_for('weather.current') }}">CURRENT</a>
-
-          <!-- <a class="nav-link text-white" href="{{ url_for('weather.forecast') }}">Forecast</a>
-          <a class="nav-link text-white" href="{{ url_for('weather.buoys') }}">Buoys</a> -->
+          <a class="nav-link text-white" href="{{ url_for('weather.forecast') }}">Forecast</a>
+          <a class="nav-link text-white" href="{{ url_for('weather.current') }}">Current</a>
+          <!-- <a class="nav-link text-white" href="{{ url_for('weather.buoys') }}">Buoys</a> -->
           <a class="nav-link text-white" href="{{ url_for('core.about') }}">About</a>
 
       </div>
