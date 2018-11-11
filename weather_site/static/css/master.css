@@ -64,13 +64,19 @@ body {
   background-color: rgba(249, 249, 249, 0.1);
 }
 
-#current_time {
+#datetime {
   color: rgba(100, 100, 100, 1);
+  font-size: 14px;
 }
 
 /* ----------------------------------------------------------- */
 /* D3 styling */
 .chart_title {
+  font-size: 1.5rem;
+  fill: rgba(75, 75, 75, 1.0);
+}
+
+.compass_title {
   font-size: 14px;
   fill: rgba(75, 75, 75, 1.0);
 }
@@ -100,7 +106,7 @@ body {
 }
 
 .axis_left_label, .axis_right_label {
-  font-size: calc(20px - 0.25vw);
+  font-size: 1.5rem;
   font-family: Arial;
 }
 
@@ -109,7 +115,7 @@ body {
 }
 
 .axis_left text, .axis_right text {
-  font-size: 16px;
+  font-size: 1.2rem;
 }
 
 .axis_day path{
@@ -129,7 +135,7 @@ body {
 }
 
 .d, .t, .h, .cc, .pp {
-  font-size: 12px;
+  font-size: 1.5rem;
 }
 
 .d {
@@ -157,14 +163,18 @@ body {
 
 .wedge_label {
   font-size: 14px;
-  fill: rgba(75, 75, 75, 1);
+  fill: rgba(100, 100, 100, 1);
 }
 
 .compass_label {
   font-size: 18px;
-  fill: rgba(0, 0, 0, 1);
+  fill: rgba(100, 100, 100, 1);
 }
 
 .arc {
   fill: rgba(255, 0, 0, 0.5);
+}
+
+.wind_compass_svg {
+  overflow: visible;
 }
