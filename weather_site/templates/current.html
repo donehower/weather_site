@@ -148,25 +148,96 @@ function drawState(userState) {
       }
 
       function updateStations() {
-        var send = {
-          state: dropdown.state.val()
-        };
-        dropdown.station.attr('disabled', 'disabled');
-        dropdown.station.empty();
-        $.getJSON("{{ url_for('weather._map_get_stations') }}", send, function(data) {
-          dropdown.station.prepend("<option value='' selected='selected'></option>");
-          data.forEach(function(item) {
-            dropdown.station.append(
-              $('<option>', {
-                value: item[0],
-                text: item[1]
-              })
-            );
-          });
-          dropdown.station.removeAttr('disabled');
-        });
-        drawState(send.state);
+            var send = {
+              state: dropdown.state.val()
+            };
+            dropdown.station.attr('disabled', 'disabled');
+            dropdown.station.empty();
+            $.getJSON("{{ url_for('weather._map_get_stations') }}", send, function(data) {
+              dropdown.station.prepend("<option value='' selected='selected'></option>");
+              data.forEach(function(item) {
+                dropdown.station.append(
+                  $('<option>', {
+                    value: item[0],
+                    text: item[1]
+                  })
+                );
+              });
+              dropdown.station.removeAttr('disabled');
+            });
+            drawState(send.state);
       }
+
+      function currentConditions(send) {
+
+            $.get("{{ url_for('weather._get_conditions') }}", send, function(data) {
+              console.log(data)
+              if (data == 0) {
+                $('#no_response').html("\
+                  <br>Sorry.\
+                  <br>There's no data for that station right now.\
+                  <br>Please choose another station.\
+                  ");
+                $('#conditions_report').css('display', 'none');
+                $('#loader').hide();
+              } else {
+              $('#no_response').hide();
+              $('#loader').hide();
+              $('#conditions_report').css('display', 'inline');
+              $('body').addClass('report_bg');
+              $('#descrip').text(data.descrip)
+              $('#station').text("Station:  " + send.station)
+              $('#temp').text("Temperature:  " + data.temp + '\u2109')
+              $('#relH').text("Relative Humidity:  " + data.relH + '\u0025')
+              if (data.feels_like == null) {
+                $('#feels_like').text("Feels Like:  " + data.temp + '\u2109')
+              }
+              if (data.feels_like != null) {
+                $('#feels_like').text("Feels Like:  " + data.feels_like + '\u2109')
+              }
+
+              if (data.windD_deg != ' ') {
+                $('#windD_deg').text(data.windD_deg + '\u00B0' + " " + data.windD_card)
+                var rot = data.windD_deg - 45
+                rot = 'rotate('+rot+'deg)'
+                $('#compass').css( {'transform': rot, 'display':'inline'} )
+              }
+              if (data.windD_deg == ' ') {
+                $('#compass').css('display', 'none')
+              }
+
+              var descrip = data.descrip.toLowerCase()
+              if (data.descrip != " ") {
+                  $('div').addClass('text-white');
+                  if (descrip.includes("clear")) {
+                    $('body').css( {'background-image':"url(static/images/clear.jpg)"} );
+                  }
+                  else if (descrip.includes("partly cloudy")) {
+                    $('body').css( {'background-image':"url(static/images/partly_cloudy.jpg)"} );
+                  }
+                  else if (descrip.includes("cloudy")) {
+                    $('body').css( {'background-image':'url(static/images/cloudy.jpg)'} );
+                  }
+                  else if (descrip.includes("rain")) {
+                    $('body').css( {'background-image':'url(static/images/rain.jpg)'} );
+                  }
+                  else if (descrip.includes("snow")) {
+                    $('body').css( {'background-image':'url(static/images/snow.jpg)'} );
+                  }
+                  else if (descrip.includes("fog")) {
+                    $('body').css( {'background-image':'url(static/images/fog.jpg)'} );
+                    $('div').removeClass('text-white');
+                  }else {
+                    $('body').css( {'background-color':'background-color: rgb(3, 5, 112)'} );
+                  }
+              }
+              if (data.script == " ") {
+                  $('body').css( {'background-image':'url(static/images/clear.jpg/)', 'background-size':'cover'});
+              }
+            }
+          }); // end of getJSON
+
+    } // end of showConditions
 
       // event listener to state dropdown change
       dropdown.state.on('change', function() {
@@ -183,76 +254,9 @@ function drawState(userState) {
         };
           $('#chart').css('display', 'none');
           $('div.tooltip').css('display', 'none');
-          $.get("{{ url_for('weather._get_conditions') }}", send, function(data) {
-            console.log(data)
-            if (data == 0) {
-              $('#no_response').html("\
-                <br>Sorry.\
-                <br>There's no data for that station right now.\
-                <br>Please choose another station.\
-                ");
-              $('#conditions_report').css('display', 'none');
-              $('#loader').hide();
-            } else {
-            $('#no_response').hide();
-            $('#loader').hide();
-            $('#conditions_report').css('display', 'inline');
-            $('body').addClass('report_bg');
-            $('#descrip').text(data.descrip)
-            $('#station').text("Station:  " + send.station)
-            $('#temp').text("Temperature:  " + data.temp + '\u2109')
-            $('#relH').text("Relative Humidity:  " + data.relH + '\u0025')
-            if (data.feels_like == null) {
-              $('#feels_like').text("Feels Like:  " + data.temp + '\u2109')
-            }
-            if (data.feels_like != null) {
-              $('#feels_like').text("Feels Like:  " + data.feels_like + '\u2109')
-            }
-
-            if (data.windD_deg != ' ') {
-              $('#windD_deg').text(data.windD_deg + '\u00B0' + " " + data.windD_card)
-              var rot = data.windD_deg - 45
-              rot = 'rotate('+rot+'deg)'
-              $('#compass').css( {'transform': rot, 'display':'inline'} )
-            }
-            if (data.windD_deg == ' ') {
-              $('#compass').css('display', 'none')
-            }
-
-            var descrip = data.descrip.toLowerCase()
-            if (data.descrip != " ") {
-                $('div').addClass('text-white');
-                if (descrip.includes("clear")) {
-                  $('body').css( {'background-image':"url(static/images/clear.jpg)"} );
-                }
-                else if (descrip.includes("partly cloudy")) {
-                  $('body').css( {'background-image':"url(static/images/partly_cloudy.jpg)"} );
-                }
-                else if (descrip.includes("cloudy")) {
-                  $('body').css( {'background-image':'url(static/images/cloudy.jpg)'} );
-                }
-                else if (descrip.includes("rain")) {
-                  $('body').css( {'background-image':'url(static/images/rain.jpg)'} );
-                }
-                else if (descrip.includes("snow")) {
-                  $('body').css( {'background-image':'url(static/images/snow.jpg)'} );
-                }
-                else if (descrip.includes("fog")) {
-                  $('body').css( {'background-image':'url(static/images/fog.jpg)'} );
-                  $('div').removeClass('text-white');
-                }else {
-                  $('body').css( {'background-color':'background-color: rgb(3, 5, 112)'} );
-                }
-            }
-            if (data.script == " ") {
-                $('body').css( {'background-image':'url(static/images/clear.jpg/)', 'background-size':'cover'});
-            }
-          }
-        }); // end of function to display api response data
-
-
-
+          currentConditions(send);
       }); // end of event listener to retrieve conditions
+
 }); // end of all form functions
 </script>
 <div class="container-fluid">
