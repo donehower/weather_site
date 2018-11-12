@@ -1,6 +1,6 @@
 // ---------- Line chart Dimensions --------------- //
 //Width and height
-var margin = {top: 50, right: 50, bottom: 100, left: 50},
+var margin = {top: 10, right: 50, bottom: 100, left: 50},
     w = 720 - margin.left - margin.right,
     h = 300 - margin.top - margin.bottom;
 
@@ -136,10 +136,10 @@ function draw_forecast(data) {
         line_chart = d3.select("#line_chart")
               .attr("width", w + margin.left + margin.right)
               .attr("height", h + margin.top + margin.bottom/10)
-              .attr('preserveAspectRatio', 'xMidYMin')
+              .attr('preserveAspectRatio', 'xMidYMid')
               .attr('viewBox', '0 0 ' + (w+margin.left+margin.right) + ' ' + (h+margin.top+margin.bottom))
             .append("g")
-              .attr("transform", "translate(" + margin.left + "," + (margin.top+35) + ")");
+              .attr("transform", "translate(" + margin.left + "," + (margin.top-10) + ")");
 
         // Draw lines
         line_chart.append("path")
@@ -460,7 +460,7 @@ function draw_forecast(data) {
                   .attr('preserveAspectRatio', 'xMidYMin')
                   .attr('viewBox', '0 0 ' + (w+margin.left+margin.right) + ' ' + (h+margin.top+margin.bottom))
                 .append("g")
-                  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                  .attr("transform", "translate(" + margin.left + "," + (margin.top-40) + ")");
 
             // Axes
             var yAxis_left_cc = d3.axisLeft()
