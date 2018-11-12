@@ -1,14 +1,14 @@
 
 var margin = {top: 50, right: 50, bottom: 50, left: 50},
-    w = 900 - margin.left - margin.right,
-    h = 600 - margin.top - margin.bottom;
+    mapW = 720 - margin.left - margin.right,
+    mapH = 400 - margin.top - margin.bottom;
 
 // Use the extracted size to set the size of an SVG element.
 national_map = d3.select("#national_map")
-      .attr("width", w)
-      .attr("height", h)
-      // .attr('preserveAspectRatio', 'xMidYMin')
-      .attr('viewBox', '0 0 ' + w + ' ' + h);
+      .attr("width", mapW)
+      .attr("height", mapH)
+      .attr('preserveAspectRatio', 'xMidYMin')
+      .attr('viewBox', '0 0 ' + (mapW+margin.left+margin.right) + ' ' + (mapH+margin.bottom));
 
 //Define map projection and path generator
 var projection = d3.geoAlbersUsa();
