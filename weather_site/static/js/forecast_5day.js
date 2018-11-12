@@ -284,7 +284,7 @@ function draw_forecast(data) {
                   .text(formatTime(date_t))
                   .attr("transform",
                         "translate(" + xScale_t(date_t) + "," +
-                                       (margin.top*.2) + ")");
+                                       (-70) + ")");
 
               focus.select("text.t")
                   .transition()
@@ -292,7 +292,7 @@ function draw_forecast(data) {
                   .text("Temperature: " + temp + "F")
                   .attr("transform",
                         "translate(" + xScale_t(date_t) + "," +
-                                       (margin.top*.6) + ")");
+                                       (-50) + ")");
 
               focus.select("text.h")
                   .transition()
@@ -300,7 +300,7 @@ function draw_forecast(data) {
                   .text("Humidity: " + humidity + "%")
                   .attr("transform",
                         "translate(" + xScale_t(date_t) + "," +
-                                       (margin.top) + ")");
+                                       (-30) + ")");
         }
 
         // SVG to detect mouse movements
