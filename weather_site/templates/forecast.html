@@ -66,6 +66,7 @@ $( document ).ready(function() {
       var send = {
         city: dropdown.city.val()
       }
+      $('#national_map').css('display', 'none');
       get_forecast_data();
 
     });
@@ -76,45 +77,48 @@ $( document ).ready(function() {
 <div class="container-fluid">
 
   <div class="form-group">
-    <br>
     <p id="menu_directions">Choose a state then a city to get the five day forecast.</p>
     <form method="POST" enctype="multipart/form-data" >
-      {{form.hidden_tag() }}
-        <div class="row">
+        {{form.hidden_tag() }}
+          <div class="row">
 
-          <div class="col form-group">
-              {{ form.state_full.label(class='form-group') }}
-              {{ form.state_full(id='select_state', class="form-control") }}
+            <div class="col form-group">
+                {{ form.state_full.label(class='form-group') }}
+                {{ form.state_full(id='select_state', class="form-control") }}
+            </div>
+
+            <div class="col form-group">
+                {{ form.city.label(class='form-group') }}
+                {{ form.city(id='select_city', class="form-control") }}
+            </div>
           </div>
-
-          <div class="col form-group">
-              {{ form.city.label(class='form-group') }}
-              {{ form.city(id='select_city', class="form-control") }}
-          </div>
-
-        </div>
     </form>
-
-  </div>
-  <div class="container">
-<svg class="container-fluid" id="national_map"></svg>
-    <div class="row align-items-center">
-      <div class="col-sm" id="title_summary">
-        <h1>5 Day Forecast</h1>
-        <h2 id='city_name'>5 Day Forecast</h2>
-        <p id="datetime">As of: <span id='current_time'></span></p>
-      </div>
-      <div class="col-sm">
-        <svg class="container-fluid" id="wind_compass"></svg>
-      </div>
-
-    </div>
   </div>
 
-      <svg class="container-fluid" id="line_chart"></svg>
-      <svg class="container-fluid" id="area_chart"></svg>
+  <div class="container-fluid">
+      <div class="row align-items-center">
+        <svg class="container-fluid" id="national_map"></svg>
+      </div>
+
+      <div class="row align-items-center">
+            <div class="col-sm" id="title_summary">
+              <h1>5 Day Forecast</h1>
+              <h2 id='city_name'>5 Day Forecast</h2>
+              <p id="datetime">As of: <span id='current_time'></span></p>
+            </div>
+
+            <div class="col-sm">
+              <svg class="container-fluid" id="wind_compass"></svg>
+            </div>
+      </div>
+
+
+  </div>
 
 </div>
+
+<svg class="container-fluid" id="line_chart"></svg>
+<svg class="container-fluid" id="area_chart"></svg>
 
 <script src="static/js/forecast_5day.js"></script>
 <script src="static/js/national_map.js"></script>
