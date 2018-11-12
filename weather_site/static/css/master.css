@@ -72,8 +72,14 @@ body {
 /* ----------------------------------------------------------- */
 /* D3 styling */
 /* ----------------------------------------------------------- */
+#national_map {
+  overflow: visible;
+  display: block;
+  margin: auto;
+}
+
 .chart_title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   fill: rgba(75, 75, 75, 1.0);
 }
 
@@ -176,7 +182,7 @@ body {
 }
 
 .d, .t, .h, .cc, .pp {
-  font-size: 1.5rem;
+  font-size: 1.1rem;
 }
 
 .d {
@@ -208,11 +214,6 @@ body {
   margin: auto;
 }
 
-#national_map {
-  overflow: visible;
-  display: inline;
-  margin: auto;
-}
 
 .cityText {
   font-size: 1.5rem
