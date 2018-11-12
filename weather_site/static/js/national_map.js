@@ -1,7 +1,7 @@
 
 var margin = {top: 50, right: 50, bottom: 50, left: 50},
-    mapW = 720 - margin.left - margin.right,
-    mapH = 400 - margin.top - margin.bottom;
+    mapW = 920 - margin.left - margin.right,
+    mapH = 500 - margin.top - margin.bottom;
 
 // Use the extracted size to set the size of an SVG element.
 national_map = d3.select("#national_map")
