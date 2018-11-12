@@ -78,6 +78,10 @@ body {
   margin: auto;
 }
 
+#area_chart {
+  overflow: visible;
+}
+
 .chart_title {
   font-size: 1.2rem;
   fill: rgba(75, 75, 75, 1.0);
